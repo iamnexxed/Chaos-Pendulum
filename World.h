@@ -22,8 +22,12 @@ class World {
         GLFWwindow& window;
 
         Rectangle* rectangle;
-        Circle* circle;
+        Circle* circle1;
+        Circle* circle2;
         Line* line;
+
+        glm::vec3 startPoint;
+        glm::vec3 endPoint;
 
         float angle = 0.0f;
 
@@ -31,9 +35,6 @@ class World {
 
     public:
         const float gravity = -0.0025;
-        const float spawnInterval = 2.0f;
-        const float organismRadius = 0.15f;
-
         bool ShouldPlayWorld = true;
 
         World( GLFWwindow& window, int windowWidth, int windowHeight );

@@ -31,6 +31,8 @@ class Rectangle {
         void Translate( glm::vec3 diplacementVec );
         void MoveTo( glm::vec3 newPosition );
         void Rotate( float angle );
+        void SetWidth( float value );
+        void SetHeight( float value );
 };
 
 #endif

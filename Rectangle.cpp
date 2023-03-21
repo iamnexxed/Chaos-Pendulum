@@ -27,6 +27,18 @@ void Rectangle::UpdateBounds() {
     this->maxBound.y = this->translation.y + this->height / 2;
 }
 
+void Rectangle::SetWidth( float value ) {
+    this->width = value;
+    this->scale.x = value / 2;
+    this->UpdateBounds();
+}
+
+void Rectangle::SetHeight( float value ) {
+    this->height = value;
+    this->scale.y = value / 2;
+    this->UpdateBounds();
+}
+
 void Rectangle::Draw( Shader& shader, Camera& camera ) {
     this->primitives.DrawRectangle( 
         shader, 
@@ -35,8 +47,7 @@ void Rectangle::Draw( Shader& shader, Camera& camera ) {
         this->translation, 
         this->rotation,
         this->scale,
-        this->pivot
-    );
+        this->pivot );
 }
 
 void Rectangle::Translate( glm::vec3 displacementVec ) {
