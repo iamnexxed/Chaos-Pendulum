@@ -19,7 +19,7 @@ void Circle::createSprite( float rad ) {
         }
     };
 
-    for( int i = 0; i < 360; i += Globals::STEP ) {
+    for( int i = 0; i < 360; i += Globals::CIRCLE_STEP ) {
 
         circle_vertices.push_back(
             Vertex { 
@@ -77,15 +77,8 @@ void Circle::ApplyForce( glm::vec3 force ) {
     this->velocity += force;
 }
 
-void Circle::Jump() {
-    this->velocity = glm::vec3( 0, 0, 0 );
-    this->ApplyForce( glm::vec3( 0, Globals::JUMPFORCE, 0 ) );
-}
-
 void Circle::Update() {
-    this->translation += this->velocity;
-    // Increase alive time
-    this->aliveTime += Globals::DELTA;
+    //this->translation += this->velocity;
 }
 
 void Circle::Translate( glm::vec3 translationVec ) {

@@ -33,7 +33,6 @@ class Circle {
         void MoveTo( glm::vec3 position );
         void Draw( Shader& shader, Camera& camera );
         void ApplyForce( glm::vec3 force );
-        void Jump();
         void Update();
         void Translate( glm::vec3 translationVec );
         void ResetPosition();

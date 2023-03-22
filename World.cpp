@@ -34,8 +34,8 @@ World::World( GLFWwindow& window, int windowWidth, int windowHeight ) :
     this->rectangle = new Rectangle( *this->primitives, 1.4f, 2.5f );
     this->rectangle->pivot = glm::vec3( -2, 1, 0 );
 
-    this->startPoint = glm::vec3( -2.0f, 2.0f, 0.0f );
-    this->endPoint = glm::vec3( 2.0f, -2.0f, 0.0f );
+    this->startPoint = glm::vec3( 2.0f, 2.0f, 0.0f );
+    this->endPoint = glm::vec3( -2.0f, -2.0f, 0.0f );
 
     this->circle1 = new Circle( 0.1f );
     this->circle2 = new Circle( 0.1f );
@@ -46,7 +46,7 @@ World::World( GLFWwindow& window, int windowWidth, int windowHeight ) :
         *this->primitives,
         this->startPoint,  
         this->endPoint,  
-        0.1f );
+        0.2f );
 
     this->ShouldPlayWorld = true;
     std::cout << "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ World Constructed ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
@@ -69,9 +69,9 @@ void World::Update() {
     
     //angle += 0.001f;
     //this->rectangle->Rotate( angle );
-    glm::vec3 newP = this->line->getEndPosition();
-    newP.y += 0.01f;
-    this->line->setEndPosition( newP );
+    // glm::vec3 newP = this->line->getEndPosition();
+    // newP.y += 0.01f;
+    // this->line->setEndPosition( newP );
 
     //Utils::showGlmVec3( this->circle->translation );
 
