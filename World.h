@@ -6,14 +6,22 @@
 #include "Camera.h"
 #include "Rectangle.h"
 #include "Primitives.h"
+#include "DoublePendulum.h"
 
+/**
+* Notes: 
+* 1. The origin is at the center of the window
+* 2. Positive X is along right direction
+* 3. Negative X is along left direction
+* 4. Positive Y is along up direction
+* 5. Negative Y is along down direction
+*/
 
 class World {
     private:
         Camera* camera;
         Shader* shaderProgram;
         Shader* selectShader;
-
         Shader* shader1;
         Shader* shader2;
         Shader* shader3;
@@ -21,17 +29,8 @@ class World {
         Primitives* primitives;
         GLFWwindow& window;
 
-        Rectangle* rectangle;
-        Circle* circle1;
-        Circle* circle2;
-        Line* line;
-
-        glm::vec3 startPoint;
-        glm::vec3 endPoint;
-
+        DoublePendulum *pendulum;
         float angle = 0.0f;
-
-
 
     public:
         const float gravity = -0.0025;

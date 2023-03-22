@@ -4,6 +4,7 @@
 #define WIDTH 720
 #define HEIGHT 480
 #define WINDOW_NAME "Chaos Pendulum"
+#include <vector>
 
 // Note: Please check Globals.cpp for correct comments and values
 namespace Globals {
@@ -13,6 +14,15 @@ namespace Globals {
     extern const float kBG_COLOR_A;
 
     extern const float CIRCLE_STEP;
+
+    extern const float DEFAULT_ANGLE1;
+    extern const float DEFAULT_ANGLE2;
+    extern const float LENGTH1;
+    extern const float LENGTH2;
+    extern const float MASS1;
+    extern const float MASS2;
+    extern const float ROPE_THICKNESS;
+
 }
 
 #endif

@@ -31,24 +31,13 @@ World::World( GLFWwindow& window, int windowWidth, int windowHeight ) :
     
     this->primitives = new Primitives();
 
-    this->rectangle = new Rectangle( *this->primitives, 1.4f, 2.5f );
-    this->rectangle->pivot = glm::vec3( -2, 1, 0 );
-
-    this->startPoint = glm::vec3( 2.0f, 2.0f, 0.0f );
-    this->endPoint = glm::vec3( -2.0f, -2.0f, 0.0f );
-
-    this->circle1 = new Circle( 0.1f );
-    this->circle2 = new Circle( 0.1f );
-    this->circle1->translation = this->startPoint;
-    this->circle2->translation = this->endPoint;
-
-    this->line = new Line( 
-        *this->primitives,
-        this->startPoint,  
-        this->endPoint,  
-        0.2f );
+    this->pendulum = new DoublePendulum( 
+        *this->primitives, 
+        glm::vec3( 0, 1.0f, 0 ) );
 
     this->ShouldPlayWorld = true;
+
+    
     std::cout << "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ World Constructed ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 }
 
@@ -58,16 +47,16 @@ void World::Start() {
 }
 
 void World::Update() {
-
-
     // Play the game
-
 
 
     // Update Calls
     this->camera->UpdateMatrix( 60.0f, 0.1f, 100.0f );
+    this->angle += 1.0f;
+    //this->pendulum->SetAngle2( this->angle );
+    this->pendulum->SetAngle1Deg( this->angle );
     
-    //angle += 0.001f;
+    std::cout << "\nAngle: " << this->angle;
     //this->rectangle->Rotate( angle );
     // glm::vec3 newP = this->line->getEndPosition();
     // newP.y += 0.01f;
@@ -77,9 +66,10 @@ void World::Update() {
 
     // Draw Calls
     //this->rectangle->Draw( *this->selectShader, *this->camera );
-    this->circle1->Draw( *this->selectShader, *this->camera );
-    this->circle2->Draw( *this->shader2, *this->camera );
-    this->line->Draw( *this->shader3, *this->camera );
+    this->pendulum->Draw( 
+        *this->selectShader, 
+        *this->shader3, 
+        *this->camera );
 }
 
 void World::Destroy() {

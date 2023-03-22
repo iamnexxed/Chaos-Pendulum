@@ -15,19 +15,13 @@ class Circle {
 
         std::vector<Line> lines;
 
-        float aliveTime = 0.0f;
-        int pillarsCrossed = 0;
-
         void createSprite( float rad );
 
     public:
-        bool isAlive;
         int id = -1;
         float radius = 1.0f;
         glm::vec3 translation = glm::vec3( 0.0f, 0.0f, 0.0f );
 		glm::vec3 scale = glm::vec3( 1.0f, 1.0f, 1.0f );
-
-        bool hasBrain;
 
         Circle( float rad );
         void MoveTo( glm::vec3 position );

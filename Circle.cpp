@@ -3,7 +3,6 @@
 Circle::Circle( float rad ) {
 
     this->createSprite( rad );
-    this->hasBrain = false;
     this->translation = glm::vec3( 0.0f, 0.0f, 0.0f );
 }
 

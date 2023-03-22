@@ -16,7 +16,7 @@ Box::Box(const glm::vec3& vmin, const glm::vec3& vmax, const glm::vec3& color)
     this->longestAxisIndex = -1;
     for(int i = 0; i < this->lines.size(); ++i)
     {
-        this->lines[i].setColor(color);
+        this->lines[i].SetColor(color);
     }
     this->CalculateLines();
 }
@@ -83,20 +83,20 @@ void Box::CalculateLines()
     glm::vec3 v4 = glm::vec3(bounds[1].x, bounds[0].y, bounds[0].z);
     glm::vec3 v5 = glm::vec3(bounds[1].x, bounds[0].y, bounds[1].z);
 
-    this->lines[0].setPoints(bounds[0], v0);
-    this->lines[1].setPoints(v0, v3);
-    this->lines[2].setPoints(v3, v4);
-    this->lines[3].setPoints(bounds[0], v4);
+    this->lines[0].SetPoints(bounds[0], v0);
+    this->lines[1].SetPoints(v0, v3);
+    this->lines[2].SetPoints(v3, v4);
+    this->lines[3].SetPoints(bounds[0], v4);
 
-    this->lines[4].setPoints(v1, bounds[1]);
-    this->lines[5].setPoints(bounds[1], v5);
-    this->lines[6].setPoints(v5, v2);
-    this->lines[7].setPoints(v2, v1);
+    this->lines[4].SetPoints(v1, bounds[1]);
+    this->lines[5].SetPoints(bounds[1], v5);
+    this->lines[6].SetPoints(v5, v2);
+    this->lines[7].SetPoints(v2, v1);
 
-    this->lines[8].setPoints(bounds[0], v2);
-    this->lines[9].setPoints(v0, v1);
-    this->lines[10].setPoints(v3, bounds[1]);
-    this->lines[11].setPoints(v4, v5);
+    this->lines[8].SetPoints(bounds[0], v2);
+    this->lines[9].SetPoints(v0, v1);
+    this->lines[10].SetPoints(v3, bounds[1]);
+    this->lines[11].SetPoints(v4, v5);
 
     this->longestAxisIndex = this->GetLongestAxis();
 }
@@ -114,9 +114,9 @@ int Box::GetLongestAxis()
     std::vector<float> xyzLen = 
     {
         // TO DO: Refactor to store the right, up and forward axes neatly
-        this->lines[3].getLength(), // Right Axis
-        this->lines[0].getLength(), // Up Axis
-        this->lines[8].getLength()  // Forward Axis
+        this->lines[3].GetLength(), // Right Axis
+        this->lines[0].GetLength(), // Up Axis
+        this->lines[8].GetLength()  // Forward Axis
     };
     
     float max = xyzLen[0];
@@ -140,13 +140,13 @@ glm::vec3 Box::GetLongestAxisMid()
     switch(this->longestAxisIndex)
     {
         case 0:
-            return this->lines[3].getMidPoint();
+            return this->lines[3].GetMidPoint();
         break;
         case 1:
-            return this->lines[0].getMidPoint();
+            return this->lines[0].GetMidPoint();
         break;
         case 2:
-            return this->lines[8].getMidPoint();
+            return this->lines[8].GetMidPoint();
         break;
 
         default: 

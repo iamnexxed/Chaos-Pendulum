@@ -2,14 +2,14 @@
 
 Line::Line() {
 	glm::vec3 defaultVec = glm::vec3(1, 1, 1);
-	this->createGLBuffer(defaultVec, defaultVec, defaultVec);
+	this->_createGLBuffer(defaultVec, defaultVec, defaultVec);
 }
 
 Line::Line(
 	const glm::vec3& startPosition, 
 	const glm::vec3& endPosition, 
 	const glm::vec3& color ) {
-	this->createGLBuffer(startPosition, endPosition, color);
+	this->_createGLBuffer(startPosition, endPosition, color);
 }
 
 Line::Line(
@@ -20,10 +20,10 @@ Line::Line(
 	this->thickness = thickness;
 	this->lineRect = new Rectangle( primitives, 0.0f, 0.0f );
 	this->line_vertices.resize( 2 );
-	this->setPoints( startPosition, endPosition );
+	this->SetPoints( startPosition, endPosition );
 }
 
-void Line::setStartPosition(glm::vec3 newPosition) {
+void Line::SetStartPosition(glm::vec3 newPosition) {
 	this->line_vertices[0].position = newPosition;
 	if( this->lineRect == nullptr ) {
 		this->vbo->SetVertex(0, line_vertices[0]);
@@ -32,7 +32,7 @@ void Line::setStartPosition(glm::vec3 newPosition) {
 	}
 }
 
-void Line::setEndPosition(glm::vec3 newPosition) {
+void Line::SetEndPosition(glm::vec3 newPosition) {
 	this->line_vertices[1].position = newPosition;
 	if( this->lineRect == nullptr ) {
 		this->vbo->SetVertex(1, line_vertices[1]);
@@ -41,18 +41,18 @@ void Line::setEndPosition(glm::vec3 newPosition) {
 	}
 }
 
-glm::vec3 Line::getStartPosition() {
+glm::vec3 Line::GetStartPosition() {
 	return this->line_vertices[0].position;
 }
 
 
-glm::vec3 Line::getEndPosition() {
+glm::vec3 Line::GetEndPosition() {
 	return this->line_vertices[1].position;
 }
 
-void Line::setPoints( glm::vec3 startPosition, glm::vec3 endPosition ) {
-	this->setStartPosition(startPosition);
-	this->setEndPosition(endPosition);
+void Line::SetPoints( glm::vec3 startPosition, glm::vec3 endPosition ) {
+	this->SetStartPosition(startPosition);
+	this->SetEndPosition(endPosition);
 }
 
 // Reference: https://stackoverflow.com/questions/14486291/how-to-draw-line-in-opengl
@@ -83,7 +83,7 @@ void Line::Draw(
 	
 }
 
-void Line::createGLBuffer(	
+void Line::_createGLBuffer(	
 	const glm::vec3& startPosition,
 	const glm::vec3& endPosition,
 	const glm::vec3& color ) {
@@ -107,7 +107,7 @@ void Line::createGLBuffer(
 	this->vbo->Unbind();
 }
 
-void Line::setColor( glm::vec3 newColor ) {
+void Line::SetColor( glm::vec3 newColor ) {
 	this->line_vertices[0].color = newColor;
 	this->vbo->SetVertex(0, line_vertices[0]);
 
@@ -115,12 +115,12 @@ void Line::setColor( glm::vec3 newColor ) {
 	this->vbo->SetVertex(1, line_vertices[1]);
 }
 
-float Line::getLength() {
+float Line::GetLength() {
 	glm::vec3 direction = this->line_vertices[1].position - this->line_vertices[0].position;
 	return glm::length(direction);
 }
 
-glm::vec3 Line::getMidPoint() {
+glm::vec3 Line::GetMidPoint() {
 	return glm::vec3(
 		(
 			this->line_vertices[0].position.x + 
@@ -137,19 +137,19 @@ void Line::_adjustRectangle() {
 	if( this->line_vertices.size() == 2 ) {
 		this->lineRect->MoveTo( glm::vec3( 0, 0, 0 ) );  
 		// Set length as the width of the rectangle
-		this->lineRect->SetWidth( this->getLength() );
+		this->lineRect->SetWidth( this->GetLength() );
 		// Set thickness as the height of the rectangle
 		this->lineRect->SetHeight( this->thickness );
 
 		
 		// Set the rotation of the rectangle according to the orientation of the line
-		float rise = this->getEndPosition().y - this->getStartPosition().y;
-		float run = this->getEndPosition().x - this->getStartPosition().x;
+		float rise = this->GetEndPosition().y - this->GetStartPosition().y;
+		float run = this->GetEndPosition().x - this->GetStartPosition().x;
 		float radians = std::atan2( rise, run );
 		this->lineRect->Rotate( radians );
 
 		// Get the midpoint of the line and assign it the center of the rectangle
-		this->lineRect->MoveTo( this->getMidPoint() );  
+		this->lineRect->MoveTo( this->GetMidPoint() );  
 	}
 	
 }

@@ -14,7 +14,6 @@ namespace fs = std::filesystem;
 class Utils
 {
 
-
     public:
 
     static constexpr float EPSILON = 0.0000001f;

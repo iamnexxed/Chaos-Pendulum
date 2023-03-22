@@ -8,6 +8,8 @@
 
 #define PI 3.1415927
 #define E 2.718281828
+#define RAD2DEG 57.2958
+#define DEG2RAD 0.0174533
 
 class Mathematics
 {
