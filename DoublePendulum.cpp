@@ -18,7 +18,7 @@ DoublePendulum::DoublePendulum(
             Globals::ROPE_THICKNESS ) );
 
     _circles.push_back(
-        new Circle( Globals::MASS1 ) );
+        new Circle( primitives, Globals::MASS1 ) );
 
     // Lower line index 1
     _lines.push_back( 
@@ -29,7 +29,7 @@ DoublePendulum::DoublePendulum(
             Globals::ROPE_THICKNESS ) );
 
     _circles.push_back(
-        new Circle( Globals::MASS2 ) );
+        new Circle( primitives, Globals::MASS2 ) );
 
     _calculateBobPositions();
 }
@@ -87,3 +87,11 @@ void DoublePendulum::_calculateBobPositions() {
     _angle2 = value * DEG2RAD;
     _calculateBobPositions();
  }
+
+void DoublePendulum::Update() {
+    // Calculate the angular acceleration
+
+    // Add the angular acceleration to the angular velocity
+
+    // Add anglular velocity to the angle
+}

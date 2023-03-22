@@ -10,6 +10,8 @@
 class DoublePendulum {
     private:
         float _angle1;
+        float _angularVel1 = 0.0f;
+        float _angularVel2 = 0.0f;
         float _angle2;
         float _length1;
         float _length2;
@@ -33,6 +35,7 @@ class DoublePendulum {
             Shader& shader1,
             Shader& shader2,
             Camera& camera );
+        void Update();
 };
 
 

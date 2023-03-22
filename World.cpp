@@ -52,11 +52,11 @@ void World::Update() {
 
     // Update Calls
     this->camera->UpdateMatrix( 60.0f, 0.1f, 100.0f );
-    this->angle += 1.0f;
+    //this->angle += 1.0f;
     //this->pendulum->SetAngle2( this->angle );
-    this->pendulum->SetAngle1Deg( this->angle );
+    //this->pendulum->SetAngle1Deg( this->angle );
     
-    std::cout << "\nAngle: " << this->angle;
+    //std::cout << "\nAngle: " << this->angle;
     //this->rectangle->Rotate( angle );
     // glm::vec3 newP = this->line->getEndPosition();
     // newP.y += 0.01f;
