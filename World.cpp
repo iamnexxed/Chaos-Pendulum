@@ -19,15 +19,15 @@ World::World( GLFWwindow& window, int windowWidth, int windowHeight ) :
 
     this->shader1 = new Shader( "sprite.vert", "sprite.frag" );
     this->shader1->Activate();
-    this->shader1->SetFloatVecUniform3fv( "baseColor", glm::vec3( 1.0f, 1.0f, 0.0f ) );
+    this->shader1->SetFloatVecUniform3fv( "baseColor", glm::vec3( 65.0f / 255.0f, 53.0f / 255.0f, 67.0f / 255.0f ) );
     
     this->shader2 = new Shader( "sprite.vert", "sprite.frag" );
     this->shader2->Activate();
-    this->shader2->SetFloatVecUniform3fv( "baseColor", glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    this->shader2->SetFloatVecUniform3fv( "baseColor", glm::vec3( 143.0f / 255.0f, 67.0f / 255.0f, 238.0f / 255.0f ) );
 
     this->shader3 = new Shader( "sprite.vert", "sprite.frag" );
     this->shader3->Activate();
-    this->shader3->SetFloatVecUniform3fv( "baseColor", glm::vec3( 0.4f, 1.0f, 1.0f ) );
+    this->shader3->SetFloatVecUniform3fv( "baseColor", glm::vec3( 240.0f / 255.0f, 235.0f / 255.0f, 141.0f / 255.0f ) );
     
     this->primitives = new Primitives();
 
@@ -52,24 +52,23 @@ void World::Update() {
 
     // Update Calls
     this->camera->UpdateMatrix( 60.0f, 0.1f, 100.0f );
-    //this->angle += 1.0f;
-    //this->pendulum->SetAngle2( this->angle );
-    //this->pendulum->SetAngle1Deg( this->angle );
+    this->pendulum->Update();
+    if( this->trail.size() < Globals::MAX_TRAIL_POINTS ) {
+        this->trail.push_back( new Circle( *this->primitives, 0.01f ) );
+        int lastIndex = this->trail.size() - 1;
+        this->trail[lastIndex]->translation = this->pendulum->GetBobPosition();
+    }
     
-    //std::cout << "\nAngle: " << this->angle;
-    //this->rectangle->Rotate( angle );
-    // glm::vec3 newP = this->line->getEndPosition();
-    // newP.y += 0.01f;
-    // this->line->setEndPosition( newP );
 
-    //Utils::showGlmVec3( this->circle->translation );
 
     // Draw Calls
-    //this->rectangle->Draw( *this->selectShader, *this->camera );
     this->pendulum->Draw( 
-        *this->selectShader, 
-        *this->shader3, 
+        *this->shader1, 
+        *this->shader2, 
         *this->camera );
+    for( int i = 0; i < this->trail.size(); ++i ) {
+        this->trail[i]->Draw( *this->shader3, *this->camera );
+    }
 }
 
 void World::Destroy() {

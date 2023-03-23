@@ -30,10 +30,9 @@ class World {
         GLFWwindow& window;
 
         DoublePendulum *pendulum;
-        float angle = 0.0f;
+        std::vector<Circle*> trail;
 
     public:
-        const float gravity = -0.0025;
         bool ShouldPlayWorld = true;
 
         World( GLFWwindow& window, int windowWidth, int windowHeight );

@@ -7,8 +7,6 @@
 
 class Primitives {
 	private:
-
-
 	std::vector<Vertex> plane_vertices = { 
 		//			COORDINATES				/			NORMALS				/			COLORS					/		TEXTURE COORDINATES
 		Vertex{ glm::vec3( -1.0f,  1.0f, 0.0f ),	glm::vec3( 0.0f, 1.0f, 0.0f ),	glm::vec3( 1.0f, 1.0f, 0.0f ),		glm::vec2( 0.0f, 0.0f ) },
@@ -49,8 +47,7 @@ class Primitives {
 			glm::vec3 translation 	= glm::vec3( 0.0f, 0.0f, 0.0f ),
 			glm::quat rotation 		= glm::quat( 1.0f, 0.0f, 0.0f, 0.0f ),
 			glm::vec3 scale 		= glm::vec3( 1.0f, 1.0f, 1.0f ),
-			bool isWire 			= false
-		) const;
+			bool isWire 			= false ) const;
 
 		void DrawRectangle (
 			Shader& shader, 
@@ -60,8 +57,7 @@ class Primitives {
 			glm::quat rotation 		= glm::quat( 1.0f, 0.0f, 0.0f, 0.0f ),
 			glm::vec3 scale 		= glm::vec3( 1.0f, 1.0f, 1.0f ),
 			glm::vec3 pivot 		= glm::vec3( 0.0f, 0.0f, 0.0f ),
-			bool isWire 			= false
-		) const;
+			bool isWire 			= false ) const;
 
 };
 

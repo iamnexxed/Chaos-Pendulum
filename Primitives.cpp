@@ -59,8 +59,7 @@ void Primitives::DrawCircle(
     glm::vec3 translation,  
     glm::quat rotation,      
     glm::vec3 scale,        
-    bool isWire            
-) const {
+    bool isWire ) const {
     this->circleMesh->DrawInstance(
         shader, 
         camera, 
@@ -69,8 +68,7 @@ void Primitives::DrawCircle(
         rotation,
         scale,
         glm::vec3( 0.0f, 0.0f, 0.0f ),
-        isWire
-    );
+        isWire );
 }
 
 void Primitives::DrawRectangle (
@@ -81,8 +79,7 @@ void Primitives::DrawRectangle (
     glm::quat rotation,
     glm::vec3 scale,
     glm::vec3 pivot,
-    bool isWire
-) const {
+    bool isWire ) const {
     this->rectangleMesh->DrawInstance(
         shader, 
         camera, 
@@ -91,6 +88,5 @@ void Primitives::DrawRectangle (
         rotation,
         scale,
         pivot,
-        isWire
-    );
+        isWire );
 }

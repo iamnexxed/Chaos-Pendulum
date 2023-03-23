@@ -7,12 +7,15 @@
 #include "Helpers/Mathematics.h"
 #include "Helpers/Utils.h"
 
+/*
+* Reference: https://www.myphysicslab.com/pendulum/double-pendulum-en.html
+*/
 class DoublePendulum {
     private:
         float _angle1;
+        float _angle2;
         float _angularVel1 = 0.0f;
         float _angularVel2 = 0.0f;
-        float _angle2;
         float _length1;
         float _length2;
         glm::vec3 _origin;
@@ -36,6 +39,7 @@ class DoublePendulum {
             Shader& shader2,
             Camera& camera );
         void Update();
+        glm::vec3 GetBobPosition();
 };
 
 

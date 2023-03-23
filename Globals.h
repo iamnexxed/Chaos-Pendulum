@@ -22,7 +22,10 @@ namespace Globals {
     extern const float MASS1;
     extern const float MASS2;
     extern const float ROPE_THICKNESS;
+    extern const float MAX_ANGULAR_VELOCITY;
 
+    extern const float GRAVITY;
+    extern const int MAX_TRAIL_POINTS;
 }
 
 #endif

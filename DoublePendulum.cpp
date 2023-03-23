@@ -90,8 +90,68 @@ void DoublePendulum::_calculateBobPositions() {
 
 void DoublePendulum::Update() {
     // Calculate the angular acceleration
+    float a = 
+        -Globals::GRAVITY * ( 
+        2 * Globals::MASS1 + Globals::MASS2 ) *
+        std::sin( _angle1 );
 
+    float b = 
+        Globals::MASS2 * 
+        Globals::GRAVITY * 
+        std::sin( _angle1 - 2 * _angle2 );
+
+    float c = 2 * std::sin( _angle1 - _angle2 ) * Globals::MASS2;
+
+    float d = 
+        _angularVel2 * _angularVel2 * _length2 +
+        _angularVel1 * _angularVel1 * _length1 * 
+        std::cos( _angle1 - _angle2 );
+
+    float e = 
+        2 * Globals::MASS1 + Globals::MASS2 - 
+        Globals::MASS2 * std::cos( 2 * _angle1 - 2 * _angle2 );
+
+    float angularAcc1 = ( a - b - c * d ) / ( _length1 * e );
+
+    a = 2 * std::sin( _angle1 - _angle2 );
+
+    b =  
+        _angularVel1 * _angularVel1 * _length1 * 
+        ( Globals::MASS1 + Globals::MASS2 );
+
+    c = 
+        Globals::GRAVITY * ( 
+            Globals::MASS1 + Globals::MASS2 ) *
+        std::cos( _angle1 );
+
+    d = 
+        _angularVel2 * 
+        _angularVel2 * 
+        _length2 * 
+        Globals::MASS2 * 
+        std::cos( _angle1 - _angle2 );
+
+    float angularAcc2 = ( a * ( b + c + d ) ) / ( _length2 * e );
+    
     // Add the angular acceleration to the angular velocity
+    _angularVel1 += angularAcc1;
+    _angularVel2 += angularAcc2;
+    _angularVel1 = Mathematics::Clamp( 
+        _angularVel1, 
+        -Globals::MAX_ANGULAR_VELOCITY,
+        Globals::MAX_ANGULAR_VELOCITY );
+    _angularVel2 = Mathematics::Clamp( 
+        _angularVel2, 
+        -Globals::MAX_ANGULAR_VELOCITY,
+        Globals::MAX_ANGULAR_VELOCITY );
 
     // Add anglular velocity to the angle
+    _angle1 += _angularVel1;
+    _angle2 += _angularVel2;
+
+    _calculateBobPositions();
+}
+
+glm::vec3 DoublePendulum::GetBobPosition() {
+    return _circles[1]->translation;
 }
