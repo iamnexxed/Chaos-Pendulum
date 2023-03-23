@@ -47,17 +47,24 @@ void World::Start() {
 }
 
 void World::Update() {
-    // Play the game
+    // Handle Input
+    if ( glfwGetKey( &this->window, GLFW_KEY_SPACE ) == GLFW_PRESS ) {
+            this->shouldUpdate = !this->shouldUpdate;
+    } 
 
 
     // Update Calls
     this->camera->UpdateMatrix( 60.0f, 0.1f, 100.0f );
-    this->pendulum->Update();
-    if( this->trail.size() < Globals::MAX_TRAIL_POINTS ) {
-        this->trail.push_back( new Circle( *this->primitives, 0.01f ) );
-        int lastIndex = this->trail.size() - 1;
-        this->trail[lastIndex]->translation = this->pendulum->GetBobPosition();
+
+    if( this->shouldUpdate ) {
+        this->pendulum->Update();
+        if( this->trail.size() < Globals::MAX_TRAIL_POINTS ) {
+            this->trail.push_back( new Circle( *this->primitives, 0.01f ) );
+            int lastIndex = this->trail.size() - 1;
+            this->trail[lastIndex]->translation = this->pendulum->GetBobPosition();
+        }
     }
+    
     
 
 

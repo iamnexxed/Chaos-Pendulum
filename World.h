@@ -34,6 +34,7 @@ class World {
 
     public:
         bool ShouldPlayWorld = true;
+        bool shouldUpdate = false;
 
         World( GLFWwindow& window, int windowWidth, int windowHeight );
         void Start();
